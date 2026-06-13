@@ -71,18 +71,28 @@ body::after{
 
   <div class="cards">
 
+    <!-- 1. Alarich AI -->
     <div class="card" onclick="openPage('alarich-ai.html')">
       <div class="icon">🤖</div>
       <div class="title">Alarich AI</div>
       <div class="desc">AI Akademik, Deep Talk, Latihan Soal, dan Islamic Assistant.</div>
     </div>
 
+    <!-- 2. E-LMS -->
+    <div class="card" onclick="openPage('https://saka12398.github.io/LMS/')">
+      <div class="icon">📚</div>
+      <div class="title">E-LMS</div>
+      <div class="desc">Learning Management System. Persiapan TKA & UTER, latihan soal, e-book lengkap.</div>
+    </div>
+
+    <!-- 3. Game -->
     <div class="card" onclick="openPage('game-card.html')">
       <div class="icon">🎮</div>
       <div class="title">Game</div>
       <div class="desc">Mainkan RPG seru, pilih dari 2 dunia petualangan berbeda.</div>
     </div>
 
+    <!-- 4. Ucapan -->
     <div class="card" onclick="openPage('ucapan.html')">
       <div class="icon">💌</div>
       <div class="title">Ucapan</div>
@@ -97,8 +107,13 @@ body::after{
 
 <script>
 function openPage(page){
-  document.body.style.opacity="0";
-  setTimeout(()=>{ window.location.href=page; },400);
+  // Periksa apakah itu URL eksternal (dimulai dengan http:// atau https://)
+  if (page.startsWith('http://') || page.startsWith('https://')) {
+    window.open(page, '_blank'); // Buka di tab baru untuk URL eksternal
+  } else {
+    document.body.style.opacity = "0";
+    setTimeout(() => { window.location.href = page; }, 400);
+  }
 }
 
 window.addEventListener("load",()=>{
