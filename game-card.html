@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 Pilih Game</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+  min-height:100vh;overflow-x:hidden;
+  background:linear-gradient(135deg,#020617,#0f172a,#1e293b);
+  display:flex;justify-content:center;align-items:center;padding:20px;position:relative;
+}
+body::before{
+  content:"";position:absolute;width:700px;height:700px;
+  background:radial-gradient(circle,#2563eb55,transparent 70%);
+  animation:spin 20s linear infinite;
+}
+body::after{
+  content:"";position:absolute;width:500px;height:500px;
+  background:radial-gradient(circle,#7c3aed55,transparent 70%);
+  animation:spinReverse 25s linear infinite;
+}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes spinReverse{from{transform:rotate(360deg);}to{transform:rotate(0deg);}}
+
+.container{width:100%;max-width:1200px;position:relative;z-index:2;text-align:center;}
+
+.logo{font-size:clamp(2rem,5vw,4rem);font-weight:700;color:white;margin-bottom:10px;animation:fadeUp 1s ease;}
+.subtitle{color:#94a3b8;font-size:clamp(.9rem,2vw,1.2rem);margin-bottom:50px;animation:fadeUp 1.3s ease;}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;max-width:700px;margin:0 auto;}
+
+.card{
+  background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.1);border-radius:25px;
+  padding:35px 25px;cursor:pointer;transition:.4s;position:relative;overflow:hidden;
+  min-height:280px;display:flex;flex-direction:column;justify-content:center;align-items:center;
+}
+.card:hover{transform:translateY(-10px);box-shadow:0 0 40px rgba(37,99,235,.4);border-color:#60a5fa;}
+.card::before{
+  content:"";position:absolute;top:-100%;left:-100%;width:300%;height:300%;
+  background:linear-gradient(45deg,transparent,rgba(255,255,255,.1),transparent);
+  transform:rotate(25deg);transition:1s;
+}
+.card:hover::before{top:100%;left:100%;}
+
+.icon{font-size:70px;margin-bottom:15px;}
+.title{font-size:28px;font-weight:700;color:white;margin-bottom:10px;}
+.desc{font-size:15px;line-height:1.7;color:#cbd5e1;max-width:250px;}
+
+.back{
+  display:inline-block;margin-bottom:30px;color:#94a3b8;text-decoration:none;
+  font-size:14px;border:1px solid rgba(255,255,255,.15);padding:8px 18px;
+  border-radius:20px;transition:.3s;
+}
+.back:hover{color:white;border-color:#60a5fa;}
+
+.footer{margin-top:40px;color:#64748b;font-size:14px;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:768px){
+  .cards{grid-template-columns:1fr;}
+  .card{min-height:240px;}
+  .icon{font-size:60px;}
+  .title{font-size:24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <a href="index.html" class="back">← Kembali ke Hub</a>
+
+  <div class="logo">🎮 Pilih Game</div>
+  <div class="subtitle">Pilih RPG yang ingin kamu mainkan</div>
+
+  <div class="cards">
+
+    <div class="card" onclick="openPage('gamee.html')">
+      <div class="icon">⚔️</div>
+      <div class="title">RPG 1</div>
+      <div class="desc">Petualangan RPG pertama dengan tantangan dan cerita seru.</div>
+    </div>
+
+    <div class="card" onclick="openPage('game.html')">
+      <div class="icon">🏆</div>
+      <div class="title">RPG 2</div>
+      <div class="desc">Mode lanjutan dengan fitur spesial dan tantangan baru.</div>
+    </div>
+
+  </div>
+
+  <div class="footer">© 2026 Alarich Project</div>
+
+</div>
+
+<script>
+function openPage(page){
+  document.body.style.opacity="0";
+  setTimeout(()=>{ window.location.href=page; },400);
+}
+
+window.addEventListener("load",()=>{
+  document.querySelectorAll(".card").forEach((card,index)=>{
+    card.style.opacity="0";
+    card.style.transform="translateY(50px)";
+    setTimeout(()=>{
+      card.style.transition=".6s";
+      card.style.opacity="1";
+      card.style.transform="translateY(0)";
+    },300 + (index*200));
+  });
+});
+</script>
+
+</body>
+</html>
